@@ -22,6 +22,7 @@ class _FireChatState extends State<FireChat> {
   bool isLoggedIn = false;
   @override
   void initState() {
+    isUserLoggedIn();
     super.initState();
   }
 
@@ -46,9 +47,9 @@ class _FireChatState extends State<FireChat> {
         home: isLoggedIn != null
             ? isLoggedIn
                 ? const AllChats()
-                : Authenticate()
+                : const Authenticate()
             : const Center(
-                child: Text("null"),
+                child: Authenticate(),
               ));
   }
 }

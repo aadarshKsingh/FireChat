@@ -9,8 +9,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../helper/config.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key, this.toggle}) : super(key: key);
   final Function? toggle;
+  const SignIn({Key? key, this.toggle}) : super(key: key);
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -215,15 +216,8 @@ class _SignInState extends State<SignIn> {
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignUp(
-                              toggle: widget.toggle,
-                            ),
-                          ),
-                        ),
-                      )
+                        onTap: () => widget.toggle,
+                      ),
                     ],
                   ),
                   const SizedBox(

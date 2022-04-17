@@ -7,8 +7,8 @@ import '../services/auth.dart';
 import 'signin.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key, this.toggle}) : super(key: key);
   final Function? toggle;
+  const SignUp({Key? key, this.toggle}) : super(key: key);
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -202,13 +202,7 @@ class _SignUpState extends State<SignUp> {
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignIn(
-                                    toggle: widget.toggle,
-                                  )),
-                        ),
+                        onTap: () => widget.toggle,
                       )
                     ],
                   ),
