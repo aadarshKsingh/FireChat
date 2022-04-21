@@ -209,14 +209,15 @@ class _SignInState extends State<SignIn> {
                       const Text("Don't have account?"),
                       GestureDetector(
                         child: Container(
-                          padding: const EdgeInsets.all(5.0),
+                          margin: const EdgeInsets.all(10.0),
                           child: const Text(
                             "Register Now",
                             style:
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => widget.toggle,
+                        onTap: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignUp())),
                       ),
                     ],
                   ),

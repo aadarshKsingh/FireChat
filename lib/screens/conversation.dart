@@ -6,16 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Conversation extends StatefulWidget {
-  const Conversation({
-    Key? key,
-    this.chatID,
-    this.contact,
-    this.mail,
-  }) : super(key: key);
+  const Conversation({Key? key, this.chatID, this.contact, this.mail, this.bio})
+      : super(key: key);
   final String? contact;
   final String? chatID;
   final String? mail;
-  // final String? bio;
+  final String? bio;
 
   @override
   _ConversationState createState() => _ConversationState();
@@ -138,18 +134,18 @@ class _ConversationState extends State<Conversation> {
                 width: 10.0,
               ),
               Text(widget.contact.toString()),
-              // IconButton(
-              //     onPressed: () => Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (context) => UserProfile(
-              //               name: widget.contact,
-              //               mail: widget.mail,
-              //               // bio: widget.bio,
-              //             ),
-              //           ),
-              //         ),
-              //     icon: const Icon(Icons.info_outline))
+              IconButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserProfile(
+                            name: widget.contact,
+                            mail: widget.mail,
+                            bio: widget.bio,
+                          ),
+                        ),
+                      ),
+                  icon: const Icon(Icons.info_outline))
             ],
           ),
           onTap: () => Navigator.push(

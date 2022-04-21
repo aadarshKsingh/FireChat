@@ -42,16 +42,8 @@ class _SearchState extends State<Search> {
     }
   }
 
-  // search() {
-  //   _dbObj.getUserInfo(_searchContr.text).then((value) {
-  //     setState(() {
-  //       _querySnapshot = value;
-  //     });
-  //   });
-  // }
-
   sendMessage(String username, String bio) {
-    String id = getChatID(Constants.name.toString(), username);
+    String id = Constants().getChatID(Constants.name.toString(), username);
     List<String> users = [Constants.name.toString(), username];
     Map<String, dynamic> chatRoom = {"users": users, "chatid": id};
 
@@ -62,7 +54,7 @@ class _SearchState extends State<Search> {
         builder: (context) => Conversation(
           chatID: id,
           contact: username,
-          // bio: bio,
+          bio: bio,
         ),
       ),
     );
@@ -125,13 +117,5 @@ class _SearchState extends State<Search> {
         ],
       ),
     );
-  }
-}
-
-getChatID(String a, String b) {
-  if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
-    return "$b\_$a";
-  } else {
-    return "$a\_$b";
   }
 }

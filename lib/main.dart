@@ -1,4 +1,3 @@
-import 'package:firechat/helper/authenticate.dart';
 import 'package:firechat/helper/config.dart';
 import 'package:firechat/screens/allchats.dart';
 import 'package:firechat/screens/signin.dart';
@@ -47,9 +46,9 @@ class _FireChatState extends State<FireChat> {
         home: isLoggedIn != null
             ? isLoggedIn
                 ? const AllChats()
-                : const Authenticate()
+                : const SignIn()
             : const Center(
-                child: Authenticate(),
+                child: SignIn(),
               ));
   }
 }

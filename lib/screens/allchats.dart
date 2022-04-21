@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firechat/helper/constants.dart';
 import 'package:firechat/screens/conversation.dart';
 import 'package:firechat/screens/search.dart';
-import 'package:firechat/screens/userProfile.dart';
 import 'package:firechat/services/auth.dart';
 import 'package:firechat/services/databaseSearch.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +27,9 @@ class _AllChatsState extends State<AllChats> {
     return StreamBuilder<QuerySnapshot>(
       stream: chatsStream,
       builder: ((context, snapshot) {
-        print(snapshot.data!.docs);
-        return snapshot.hasData || snapshot.data!.docs.isNotEmpty
+        return snapshot.hasData &&
+                snapshot.data!.docs.isNotEmpty &&
+                !snapshot.hasError
             ? ListView.builder(
                 itemExtent: 80,
                 shrinkWrap: true,
@@ -76,20 +76,6 @@ class _AllChatsState extends State<AllChats> {
                               .replaceAll("_", "")
                               .replaceAll(Constants.name.toString(), ""),
                           style: const TextStyle(fontSize: 20)),
-                      // IconButton(
-                      //     onPressed: () => Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //           builder: (context) => UserProfile(
-                      //             name: snapshot.data!.docs[index]
-                      //                 .get("chatid")
-                      //                 .toString()
-                      //                 .replaceAll("_", "")
-                      //                 .replaceAll(
-                      //                     Constants.name.toString(), ""),
-                      //           ),
-                      //         )),
-                      //     icon: const Icon(Icons.info))
                     ],
                   ),
                 ),

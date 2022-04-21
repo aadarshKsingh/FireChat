@@ -202,7 +202,8 @@ class _SignUpState extends State<SignUp> {
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => widget.toggle,
+                        onTap: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignIn())),
                       )
                     ],
                   ),
