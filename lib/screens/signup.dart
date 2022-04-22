@@ -149,7 +149,7 @@ class _SignUpState extends State<SignUp> {
                             validator: (value) {
                               return value!.contains(RegExp(passRegex))
                                   ? null
-                                  : "Password must contain upper case ,lower case character with special character";
+                                  : "Invalid Password";
                             },
                             controller: _passContr,
                             maxLines: 1,
@@ -202,8 +202,10 @@ class _SignUpState extends State<SignUp> {
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => SignIn())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignIn())),
                       )
                     ],
                   ),

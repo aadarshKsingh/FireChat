@@ -45,13 +45,11 @@ class _SignInState extends State<SignIn> {
         if (value != null) {
           QuerySnapshot userInfoSnapshot =
               await Database().getUserInfo(_emailContr.text);
-
           SharedPreferencesConfig.storeStatus(true);
           await SharedPreferencesConfig.storeUsername(
               userInfoSnapshot.docs[0].get('name'));
-          SharedPreferencesConfig.storeMail(
+          await SharedPreferencesConfig.storeMail(
               userInfoSnapshot.docs[0].get('mail'));
-
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const AllChats()));
         } else {
@@ -216,8 +214,10 @@ class _SignInState extends State<SignIn> {
                                 TextStyle(decoration: TextDecoration.underline),
                           ),
                         ),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => SignUp())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUp())),
                       ),
                     ],
                   ),

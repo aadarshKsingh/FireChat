@@ -42,7 +42,7 @@ class _SearchState extends State<Search> {
     }
   }
 
-  sendMessage(String username, String bio) {
+  sendMessage(String username) {
     String id = Constants().getChatID(Constants.name.toString(), username);
     List<String> users = [Constants.name.toString(), username];
     Map<String, dynamic> chatRoom = {"users": users, "chatid": id};
@@ -54,7 +54,6 @@ class _SearchState extends State<Search> {
         builder: (context) => Conversation(
           chatID: id,
           contact: username,
-          bio: bio,
         ),
       ),
     );
@@ -104,8 +103,9 @@ class _SearchState extends State<Search> {
                                     content:
                                         Text("You can't message yourself")));
                           } else {
-                            sendMessage(_querySnapshot!.docs[index].get('name'),
-                                _querySnapshot!.docs[index].get('bio'));
+                            sendMessage(
+                              _querySnapshot!.docs[index].get('name'),
+                            );
                           }
                         },
                         icon: const Icon(Icons.chat_bubble_outline),

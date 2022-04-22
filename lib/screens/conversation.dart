@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Conversation extends StatefulWidget {
-  const Conversation({Key? key, this.chatID, this.contact, this.mail, this.bio})
+  const Conversation({Key? key, this.chatID, this.contact, this.mail})
       : super(key: key);
   final String? contact;
   final String? chatID;
   final String? mail;
-  final String? bio;
 
   @override
   _ConversationState createState() => _ConversationState();
@@ -141,7 +140,6 @@ class _ConversationState extends State<Conversation> {
                           builder: (context) => UserProfile(
                             name: widget.contact,
                             mail: widget.mail,
-                            bio: widget.bio,
                           ),
                         ),
                       ),

@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 class UserProfile extends StatefulWidget {
-  const UserProfile({Key? key, this.name, this.mail, this.bio})
-      : super(key: key);
+  const UserProfile({Key? key, this.name, this.mail}) : super(key: key);
   final String? name;
   final String? mail;
-  final String? bio;
   @override
   State<UserProfile> createState() => _UserProfileState();
 }
@@ -63,9 +61,6 @@ class _UserProfileState extends State<UserProfile> {
                         ListTile(
                             trailing: const Icon(FontAwesome5.envelope),
                             title: Text(_infoSnap!.docs[index].get("mail"))),
-                        ListTile(
-                            trailing: const Icon(FontAwesome5.id_card),
-                            title: Text(_infoSnap!.docs[index].get("bio"))),
                       ],
                     )),
               )

@@ -17,11 +17,6 @@ class AllChats extends StatefulWidget {
 
 class _AllChatsState extends State<AllChats> {
   Stream<QuerySnapshot>? chatsStream;
-  updateName() {
-    setState(() {
-      Constants.name = widget.name;
-    });
-  }
 
   Widget chatRoomsList() {
     return StreamBuilder<QuerySnapshot>(
@@ -98,7 +93,6 @@ class _AllChatsState extends State<AllChats> {
 
   @override
   void initState() {
-    updateName();
     getUserInfogetChats();
     super.initState();
   }
@@ -106,7 +100,6 @@ class _AllChatsState extends State<AllChats> {
   getUserInfogetChats() async {
     Constants.name = await SharedPreferencesConfig.getUsername();
     Constants.mail = await SharedPreferencesConfig.getMail();
-
     Database().getUserChats(Constants.name.toString()).then((snapshots) {
       setState(() {
         chatsStream = snapshots;
@@ -143,10 +136,9 @@ class _AllChatsState extends State<AllChats> {
               ]),
               ListTile(title: Center(child: Text(Constants.name.toString()))),
               ListTile(
-                title: Center(
-                  child: Text(Constants.mail.toString()),
-                ),
-              ),
+                  title: Center(
+                child: Text(Constants.mail.toString()),
+              )),
               ListTile(
                   title: const Center(child: Text("Logout")),
                   trailing: const Icon(Icons.logout),

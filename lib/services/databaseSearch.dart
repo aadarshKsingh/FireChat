@@ -5,7 +5,6 @@ class Database {
     final userMap = {
       'name': name,
       'mail': mail,
-      'bio': 'Hey there! I am using FireChat.'
     };
     FirebaseFirestore.instance.collection("users").add(userMap).catchError((e) {
       print(e);
@@ -67,7 +66,6 @@ class Database {
   }
 
   getUserInfoByName(String friendName) async {
-    print(friendName);
     return await FirebaseFirestore.instance
         .collection('users')
         .where('name', arrayContains: friendName)
