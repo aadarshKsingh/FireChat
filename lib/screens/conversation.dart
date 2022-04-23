@@ -53,7 +53,7 @@ class _ConversationState extends State<Conversation> {
                         ? Constants.senderAccent
                         : Constants.receiverAccent,
                     child: Container(
-                      margin: const EdgeInsets.all(10.0),
+                      margin: const EdgeInsets.all(5.0),
                       padding: const EdgeInsets.all(5.0),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -156,47 +156,57 @@ class _ConversationState extends State<Conversation> {
         backgroundColor: Constants.mainAccent,
         elevation: 0,
       ),
-      body: Stack(alignment: Alignment.bottomCenter, children: [
-        Container(
-          height: size.height,
-          width: size.width,
-          decoration: const BoxDecoration(color: Color(0xFF34495E)),
-        ),
-        conversationsListView(),
-        Container(
-          alignment: Alignment.center,
-          height: 60,
-          width: size.width,
-          decoration: const BoxDecoration(
-            color: Color(0xFF1a252f),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: _msgController,
-                    decoration: const InputDecoration.collapsed(
-                      hintText: "Enter a message",
-                      hintStyle: TextStyle(color: Colors.white),
-                    ),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
+      body: Stack(
+          clipBehavior: Clip.antiAlias,
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              height: size.height,
+              width: size.width,
+              decoration: const BoxDecoration(color: Color(0xFF34495E)),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                  alignment: Alignment.topCenter,
+                  height: MediaQuery.of(context).size.height - 160,
+                  width: MediaQuery.of(context).size.width,
+                  child: conversationsListView()),
+            ),
+            Container(
+              alignment: Alignment.center,
+              height: 60,
+              width: size.width,
+              decoration: const BoxDecoration(
+                color: Color(0xFF1a252f),
               ),
-              IconButton(
-                onPressed: () => sendMessage(),
-                icon: const Icon(
-                  Icons.send,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
-      ]),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: _msgController,
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "Enter a message",
+                          hintStyle: TextStyle(color: Colors.white),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => sendMessage(),
+                    icon: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ]),
     );
   }
 }

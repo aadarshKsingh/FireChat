@@ -71,14 +71,4 @@ class Database {
         .where('name', arrayContains: friendName)
         .snapshots();
   }
-
-  getLastMessage(chatRoomID) async {
-    return await FirebaseFirestore.instance
-        .collection('chat')
-        .doc(chatRoomID)
-        .collection('conversation')
-        .orderBy("time", descending: false)
-        .snapshots()
-        .last;
-  }
 }

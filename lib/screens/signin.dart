@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../helper/config.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignIn extends StatefulWidget {
   final Function? toggle;
@@ -64,169 +65,173 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Container(
-          height: 50.0,
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
-              ),
-              color: Colors.amber),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-            Icon(Icons.whatshot_rounded),
-            SizedBox(
-              width: 10.0,
-            ),
-            Text("Sign In")
-          ]),
-        ),
-        centerTitle: true,
+    return Stack(children: [
+      Image.asset(
+        "assets/images/bg.jpg",
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        fit: BoxFit.fitHeight,
       ),
-      body: isLoading
-          ? Container(
-              child: const Center(child: CircularProgressIndicator()),
-            )
-          : SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: FittedBox(
-                      clipBehavior: Clip.antiAlias,
-                      child: SvgPicture.asset('assets/images/fire.svg',
-                          height: size.height * 0.35,
-                          width: size.width * 0.35,
-                          fit: BoxFit.scaleDown),
-                    ),
-                  ),
-                  Form(
-                      key: _signInKey,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 8.0),
-                            child: TextFormField(
-                              validator: (value) {
-                                return value!.contains('@')
-                                    ? null
-                                    : "Invalid mail";
-                              },
-                              controller: _emailContr,
-                              maxLines: 1,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.mail),
-                                labelText: "Email",
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.auto,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 2.0),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0))),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 8.0),
-                            child: TextFormField(
-                              controller: _passContr,
-                              maxLines: 1,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.password_outlined),
-                                labelText: "Password",
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.auto,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 2.0),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0))),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: RichText(
-                        text: TextSpan(text: "", children: [
-                      TextSpan(
-                          text: "Forgot Password?       ",
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = (() => {}))
-                    ])),
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () => signIn(),
-                    child: const Text("Sign in"),
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.4,
-                            vertical: size.height * 0.03),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        primary: Colors.amber[300]),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () =>
-                        Authentications().signInWithGoogle(context),
-                    child: const Text("Sign in with Google"),
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.3,
-                            vertical: size.height * 0.03),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0))),
-                        primary: Colors.amber[200]),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text("Don't have account?"),
-                      GestureDetector(
-                        child: Container(
-                          margin: const EdgeInsets.all(10.0),
-                          child: const Text(
-                            "Register Now",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
-                          ),
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            "Welcome to FireChat",
+            style: GoogleFonts.roboto(fontSize: 30),
+          ),
+          centerTitle: true,
+        ),
+        body: isLoading
+            ? Container(
+                child: const Center(child: CircularProgressIndicator()),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const SizedBox(height: 50),
+                    Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: FittedBox(
+                          clipBehavior: Clip.antiAlias,
+                          child: SvgPicture.asset('assets/images/fire.svg',
+                              height: size.height * 0.2,
+                              width: size.width * 0.2,
+                              alignment: Alignment.center,
+                              fit: BoxFit.scaleDown),
                         ),
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUp())),
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
+                    ),
+                    const SizedBox(height: 100),
+                    Form(
+                        key: _signInKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 8.0),
+                              child: TextFormField(
+                                validator: (value) {
+                                  return value!.contains('@')
+                                      ? null
+                                      : "Invalid mail";
+                                },
+                                controller: _emailContr,
+                                maxLines: 1,
+                                decoration: const InputDecoration(
+                                  icon: Icon(Icons.mail),
+                                  labelText: "Email",
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.auto,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2.0),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 8.0),
+                              child: TextFormField(
+                                controller: _passContr,
+                                maxLines: 1,
+                                decoration: const InputDecoration(
+                                  icon: Icon(Icons.password_outlined),
+                                  labelText: "Password",
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.auto,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 2.0),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: RichText(
+                          text: TextSpan(text: "", children: [
+                        TextSpan(
+                            text: "Forgot Password?       ",
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = (() =>
+                                  _auth.forgotPassword(_emailContr.text)))
+                      ])),
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => signIn(),
+                      child: const Text("Sign in"),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.4,
+                              vertical: size.height * 0.03),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          primary: Colors.blueGrey[300]),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () =>
+                          Authentications().signInWithGoogle(context),
+                      child: const Text("Sign in with Google"),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.3,
+                              vertical: size.height * 0.03),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0))),
+                          primary: Colors.blueGrey[200]),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text("Don't have account?"),
+                        GestureDetector(
+                          child: Container(
+                            margin: const EdgeInsets.all(10.0),
+                            child: const Text(
+                              "Register Now",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUp())),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
-            ),
-    );
+      ),
+    ]);
   }
 }

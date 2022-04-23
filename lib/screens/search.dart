@@ -4,6 +4,7 @@ import 'package:firechat/helper/constants.dart';
 import 'package:firechat/services/databaseSearch.dart';
 import 'package:flutter/material.dart';
 import 'conversation.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -63,6 +64,7 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Constants.mainAccent,
         elevation: 0,
         title: const Text("Search"),
       ),
@@ -76,7 +78,7 @@ class _SearchState extends State<Search> {
               decoration: const InputDecoration(
                 hintText: "Search",
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                 ),
               ),
             ),
@@ -86,34 +88,48 @@ class _SearchState extends State<Search> {
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
                   itemCount: _querySnapshot!.docs.length,
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(_querySnapshot!.docs[index].get("name")),
-                    subtitle: Text(_querySnapshot!.docs[index].get("mail")),
-                    trailing: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[350],
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(25))),
-                      child: IconButton(
-                        onPressed: () async {
-                          if (await SharedPreferencesConfig.getUsername() ==
-                              _querySnapshot!.docs[index].get("name")) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content:
-                                        Text("You can't message yourself")));
-                          } else {
-                            sendMessage(
-                              _querySnapshot!.docs[index].get('name'),
-                            );
-                          }
-                        },
-                        icon: const Icon(Icons.chat_bubble_outline),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      tileColor: Colors.grey[300],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)),
+                      title: Text(_querySnapshot!.docs[index].get("name")),
+                      subtitle: Text(_querySnapshot!.docs[index].get("mail")),
+                      trailing: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[350],
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15))),
+                        child: IconButton(
+                          onPressed: () async {
+                            if (await SharedPreferencesConfig.getUsername() ==
+                                _querySnapshot!.docs[index].get("name")) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text("You can't message yourself")));
+                            } else {
+                              sendMessage(
+                                _querySnapshot!.docs[index].get('name'),
+                              );
+                            }
+                          },
+                          icon: const Icon(EvilIcons.comment),
+                        ),
                       ),
                     ),
                   ),
                 )
-              : const SizedBox()
+              : Column(
+                  children: const [
+                    Icon(
+                      EvilIcons.exclamation,
+                      size: 130,
+                    ),
+                    Text("Nothing Found", style: TextStyle(fontSize: 25)),
+                  ],
+                )
         ],
       ),
     );

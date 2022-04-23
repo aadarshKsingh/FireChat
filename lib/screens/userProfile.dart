@@ -49,18 +49,36 @@ class _UserProfileState extends State<UserProfile> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
+                          margin: const EdgeInsets.only(bottom: 10.0),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[400],
+                              borderRadius: BorderRadius.circular(15)),
                           child: const Icon(
                             EvilIcons.user,
                             size: 400.0,
                           ),
                         ),
-                        ListTile(
-                            horizontalTitleGap: 50,
-                            trailing: const Icon(FontAwesome5.user_circle),
-                            title: Text(_infoSnap!.docs[index].get("name"))),
-                        ListTile(
-                            trailing: const Icon(FontAwesome5.envelope),
-                            title: Text(_infoSnap!.docs[index].get("mail"))),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 70.0, vertical: 10.0),
+                          child: ListTile(
+                              tileColor: Colors.grey[400],
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              horizontalTitleGap: 50,
+                              trailing: const Icon(FontAwesome5.user_circle),
+                              title: Text(_infoSnap!.docs[index].get("name"))),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 70.0, vertical: 10.0),
+                          child: ListTile(
+                              tileColor: Colors.grey[400],
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              trailing: const Icon(FontAwesome5.envelope),
+                              title: Text(_infoSnap!.docs[index].get("mail"))),
+                        ),
                       ],
                     )),
               )

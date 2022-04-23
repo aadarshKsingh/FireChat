@@ -3,6 +3,7 @@ import 'package:firechat/screens/allchats.dart';
 import 'package:firechat/screens/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,8 @@ class _FireChatState extends State<FireChat> {
         title: 'FireChat',
         theme: ThemeData(
             primarySwatch: Colors.amber,
-            visualDensity: VisualDensity.comfortable),
+            visualDensity: VisualDensity.comfortable,
+            textTheme: GoogleFonts.poppinsTextTheme()),
         darkTheme: ThemeData(
             primaryColor: Colors.amber,
             visualDensity: VisualDensity.comfortable),
