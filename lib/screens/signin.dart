@@ -58,7 +58,8 @@ class _SignInState extends State<SignIn> {
             isLoading = false;
           });
         }
-      });
+      }).then((value) => ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(value.toString()))));
     }
   }
 
