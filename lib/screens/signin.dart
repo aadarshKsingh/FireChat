@@ -142,6 +142,7 @@ class _SignInState extends State<SignIn> {
                               child: TextFormField(
                                 controller: _passContr,
                                 maxLines: 1,
+                                obscureText: true,
                                 decoration: const InputDecoration(
                                   icon: Icon(Icons.password_outlined),
                                   labelText: "Password",

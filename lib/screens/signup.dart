@@ -154,6 +154,7 @@ class _SignUpState extends State<SignUp> {
                               },
                               controller: _passContr,
                               maxLines: 1,
+                              obscureText: true,
                               decoration: const InputDecoration(
                                 icon: Icon(Icons.password_outlined),
                                 labelText: "Password",
